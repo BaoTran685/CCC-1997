@@ -1,0 +1,34 @@
+# Python 3.
+# By Bao Tran
+# --------------------------------------------------
+n = int(input())
+L = [(int(input()), int(input())) for q in range(n)]
+
+def process(dividend, divisor, quotient):
+    ini = divisor
+    dif = len(str(dividend)) - len(str(divisor))
+    if dif > 0:
+        divisor = divisor * 10 ** dif
+        if divisor > dividend:
+            divisor //= 10
+    else:
+        if dividend < divisor:
+            if quotient == "":
+                quotient = "0"
+            return quotient, dividend
+    return find_quotient(dividend, divisor, quotient, ini)
+    
+def find_quotient(dividend, divisor, quotient, ini):
+    if dividend < divisor == ini:
+        return quotient, dividend
+    count = 0
+    while dividend - divisor >= 0:
+        dividend -= divisor
+        count += 1
+    if not divisor % 10 and divisor != ini:
+        divisor //= 10
+    return find_quotient(dividend, divisor, quotient+str(count), ini)
+
+for i in range(n):
+    print(*process(*L[i], ""), sep="\n")
+    print("")
