@@ -1,0 +1,22 @@
+# Python 3.
+# By Bao Tran
+# -----------------------------------
+n = int(input())
+N = [int(input()) for q in range(n)]
+
+def process(num):
+    li = []
+    for i in range(1, num+1):
+        if not num % i:
+            if all(i not in tup for tup in li):
+                li.append((i, num//i))
+    for x, y in li:
+        if any(abs(x-y) == a+b for a, b in li):
+            return True
+    return False
+
+for i in range(n):
+    if process(N[i]):
+        print(f"{N[i]} is nasty")
+    else:
+        print(f"{N[i]} is not nasty")
