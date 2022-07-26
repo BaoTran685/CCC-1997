@@ -1,0 +1,27 @@
+# Python 3.
+# By Bao Tran
+# --------------
+n = int(input())
+L = []
+for q in range(n):
+    line = input()
+    l = []
+    while line != "":
+        l.append(line.split())
+        line = input()
+    L.append(l)
+
+def process(li):
+    di = []
+    for sub in li:
+        for char in sub:
+            if char not in di:
+                di.append(char)
+                print(char, end=" ")
+            else:
+                print(di.index(char)+1, end=" ")
+        print("")
+
+for i in range(n):
+    print("")
+    process(L[i])
