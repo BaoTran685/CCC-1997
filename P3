@@ -1,0 +1,26 @@
+# Python 3.
+# By Bao Tran
+# -----------------------------------
+n = int(input())
+T = [int(input()) for q in range(n)]
+
+def process(num):
+    li, rou = [num, 0, 0], 0
+    print("Round {}: {} undefeated, {} one-loss, {} eliminated".format(rou, *li))
+    while not li[0] == li[1] == 1:
+        li[2] += li[1]//2
+        li[1] = li[1]//2 + li[1] % 2
+        if li[0] > 1:
+            li[1] += li[0]//2
+            li[0] = li[0]//2 + li[0] % 2
+        rou += 1
+        print("Round {}: {} undefeated, {} one-loss, {} eliminated".format(rou, *li))
+    li[0], li[1], rou = li[0]-1, li[1]+1, rou+1
+    print("Round {}: {} undefeated, {} one-loss, {} eliminated".format(rou, *li))
+
+    li[1], li[2], rou = li[1]-1, li[2]+1, rou+1
+    print("Round {}: {} undefeated, {} one-loss, {} eliminated".format(rou, *li))
+    print(f"There are {rou} rounds")
+for i in range(n):
+    print("")
+    process(T[i])
