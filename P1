@@ -1,0 +1,18 @@
+# Python 3.
+# By Bao Tran
+# ------------------------------------------------------
+n = int(input())
+S, V, O = [], [], []
+for i in range(n):
+    s, v, o = int(input()), int(input()), int(input())
+    S.append([input() for g in range(s)])
+    V.append([input() for g in range(v)])
+    O.append([input() for g in range(o)])
+
+def process(sub, verb, obj):
+    for a in sub:
+        for b in verb:
+            for c in obj:
+                print(a, b, c)
+for i in range(n):
+    process(S[i], V[i], O[i])
